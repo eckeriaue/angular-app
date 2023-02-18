@@ -1,6 +1,5 @@
 <div *ngIf="!loading; else unloadded">
   <ul *ngIf="todosService.todos.length; else noTodos" class="menu bg-base-100 p-2 rounded-box w-full">
-    <input  name="first" class="input input-bordered input-accent"  type="text" />
     <li *ngFor="let todo of todosService.todos; let i = index" (click)="onChange(todo.id)">
       <div class="min-w-full flex items-center justify-between">
         <span class="flex items-center gap-x-2" [class.line-through]="todo.completed">
@@ -19,7 +18,9 @@
 </div>
 
 <ng-template #unloadded>
-  <h2 class="text-center text-info-content"> Loading... </h2>
+  <div class="flex flex-col w-full">
+    <div class="grid h-20 card bg-base-300 rounded-box place-items-center">loading...</div> 
+  </div>
 </ng-template>
 
 <ng-template #noTodos>

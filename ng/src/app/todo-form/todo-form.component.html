@@ -1,0 +1,10 @@
+<div class="form-control w-full">
+  <label class="input-group">
+    <input
+    type="text"
+    [(ngModel)]="title"
+    (keyup.enter)="addTodo()"
+    placeholder="Add new todo item" class="input w-full input-accent input-bordered" />
+    <button (click)="addTodo()" class="btn"> Add </button>
+  </label>
+</div>

@@ -1,19 +1,21 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
-import { Todo, TodosService } from 'src/shared/todos.service'
+import { delay } from 'rxjs'
+import { TodosService } from 'src/shared/todos.service'
 
 
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit  {
-
 
   public loading: boolean = true
   constructor(readonly todosService: TodosService) {}
   ngOnInit(): void {
-    this.todosService.fetchTodos().subscribe(() => this.loading = false)
+    const todos$ = this.todosService.fetchTodos().pipe(
+      delay(500)
+    )
+    todos$.subscribe(() => this.loading = false)
   }
 
   onChange(id: number) {

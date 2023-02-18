@@ -33,4 +33,9 @@ export class TodosService {
     const index = this.findTodoById(id)
     this.todos.splice(index, 1)
   }
+
+
+  public addTodo(todo: Todo) {
+    this.todos.unshift(todo)
+  }
 }
