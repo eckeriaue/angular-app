@@ -34,7 +34,6 @@ export class TodosService {
     this.todos.splice(index, 1)
   }
 
-
   public addTodo(todo: Todo) {
     this.todos.unshift(todo)
   }
