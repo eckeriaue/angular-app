@@ -1,20 +1,26 @@
-<ul *ngIf="todosService.todos.length; else noTodos" class="menu bg-base-100 p-2 rounded-box w-full">
-  <input  name="first" class="input input-bordered input-accent"  type="text" />
-  <li *ngFor="let todo of todosService.todos; let i = index" (click)="onChange(todo.id)">
-    <div class="min-w-full flex items-center justify-between">
-      <span class="flex items-center gap-x-2" [class.line-through]="todo.completed">
-        <input type="checkbox" [class.done]="todo.completed"  [checked]="todo.completed" class="checkbox" />
-        <strong> {{i + 1}}. </strong>
-        {{todo.title}}
-      </span>
-
-      <div class="space-x-2">
-        <span> {{todo.date | date:'medium'}} </span>
-        <button (click)="removeTodo(todo.id)" class="btn btn-error">&times;</button>
+<div *ngIf="!loading; else unloadded">
+  <ul *ngIf="todosService.todos.length; else noTodos" class="menu bg-base-100 p-2 rounded-box w-full">
+    <input  name="first" class="input input-bordered input-accent"  type="text" />
+    <li *ngFor="let todo of todosService.todos; let i = index" (click)="onChange(todo.id)">
+      <div class="min-w-full flex items-center justify-between">
+        <span class="flex items-center gap-x-2" [class.line-through]="todo.completed">
+          <input type="checkbox" [class.done]="todo.completed"  [checked]="todo.completed" class="checkbox" />
+          <strong> {{i + 1}}. </strong>
+          {{todo.title}}
+        </span>
+  
+        <div class="space-x-2">
+          <span> {{todo.date | date:'medium'}} </span>
+          <button (click)="removeTodo(todo.id)" class="btn btn-error">&times;</button>
+        </div>
       </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>
+
+<ng-template #unloadded>
+  <h2 class="text-center text-info-content"> Loading... </h2>
+</ng-template>
 
 <ng-template #noTodos>
   <div class="alert alert-error shadow-lg">

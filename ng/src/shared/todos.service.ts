@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core"
-
+import { HttpClient } from '@angular/common/http'
+import { Observable, tap } from "rxjs"
 
 export interface Todo {
   id: number
@@ -10,10 +11,14 @@ export interface Todo {
 
 @Injectable({providedIn: 'root'})
 export class TodosService {
-  public todos: Todo[] = [
-    {id: 0, date: new Date(), completed: true,  title: 'todo 1'},
-    {id: 1, date: new Date(), completed: false,  title: 'todo '},
-  ]
+  public todos: Todo[] = []
+
+  constructor(private http: HttpClient) {}
+
+  public fetchTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos')
+      .pipe(tap(todos => this.todos = todos))
+  }
 
   private findTodoById(id: number) {
     return this.todos.findIndex(todo => todo.id === id)
