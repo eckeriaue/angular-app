@@ -1,3 +1,17 @@
-<ul >
-  <li *ngFor="let todo of todos" [textContent]="todo.title">
+<ul [className]="' menu bg-base-100 p-2 rounded-box w-full'">
+  <input  name="first" class="input input-bordered input-accent"  type="text" />
+  <li *ngFor="let todo of todos; let i = index">
+    <div class="min-w-full flex items-center justify-between">
+      <span class="flex items-center gap-x-2">
+        <input type="checkbox" [class.done]="todo.completed" (change)="onChange(todo.id)" [checked]="todo.completed" class="checkbox" />
+        <strong> {{i + 1}}. </strong>
+        {{todo.title}}
+      </span>
+
+      <div class="space-x-2">
+        <span> {{todo.date | date:'medium'}} </span>
+        <button class="btn btn-error">&times;</button>
+      </div>
+    </div>
+  </li>
 </ul>

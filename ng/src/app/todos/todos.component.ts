@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 
+
+export interface Todo {
+  id: number
+  title: string
+  completed: boolean
+  date?: any
+}
 
 @Component({
   selector: 'app-todos',
@@ -7,14 +14,14 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
-  
-  todos = [
-    {id: 0, title: 'todo 1'},
-    {id: 1, title: 'todo '},
-  ]
+  textField = 'asdsd'
+  @Input() todos: Todo[] = []
+  @Output() onToggle = new EventEmitter<number>()
   constructor() {}
   ngOnInit(): void {
-    setTimeout(() => this.todos.push({id: 3, title: 'slkdhk'}), 1000)
-      console.log('todos init')
+  }
+
+  onChange(id: number) {
+    this.onToggle.emit(id)
   }
 }

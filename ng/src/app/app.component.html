@@ -1,11 +1,9 @@
 <div class="flex items-center justify-center h-screen w-screen">
-  <div>
+  <div class="container">
 
     <h1 [ngClass]="appTitle" class="text-4xl font-medium text-center mb-4"> {{appTitle}} </h1>
   
-    {{counter}}
-    <button class="btn" (blur)="onBlur()" (click)="onClick()"> bebra </button>
 
-    <app-todos  />
+    <app-todos (onToggle)="onToggle($event)" [todos]="todos" class="mt-5 block" />
   </div>
 </div>
