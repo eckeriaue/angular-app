@@ -1,8 +1,8 @@
 <ul [className]="' menu bg-base-100 p-2 rounded-box w-full'">
   <input  name="first" class="input input-bordered input-accent"  type="text" />
-  <li *ngFor="let todo of todos; let i = index">
+  <li *ngFor="let todo of todos; let i = index" (click)="onChange(todo.id)">
     <div class="min-w-full flex items-center justify-between">
-      <span class="flex items-center gap-x-2">
+      <span class="flex items-center gap-x-2" [class.line-through]="todo.completed">
         <input type="checkbox" [class.done]="todo.completed" (change)="onChange(todo.id)" [checked]="todo.completed" class="checkbox" />
         <strong> {{i + 1}}. </strong>
         {{todo.title}}
