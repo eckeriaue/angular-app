@@ -10,6 +10,7 @@ import { TodosService } from 'src/shared/todos.service'
 export class TodosComponent implements OnInit  {
 
   public loading: boolean = true
+  public searchParams: string = ''
   constructor(readonly todosService: TodosService) {}
   ngOnInit(): void {
     const todos$ = this.todosService.fetchTodos().pipe(

@@ -17,7 +17,9 @@ export class TodoFormComponent {
       completed: false,
       date: new Date()
     }
-    this.todoService.addTodo(todo)
-    this.title = ''
+    if (this.title) {
+      this.todoService.addTodo(todo)
+      this.title = ''
+    }
   }
 }
